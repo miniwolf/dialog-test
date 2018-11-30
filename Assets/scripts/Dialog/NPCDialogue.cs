@@ -6,6 +6,7 @@ namespace DefaultNamespace
     {
         public DialogueSystem DialogueSystem { private get; set; }
         public string[] Dialogue;
+        public string Name;
 
         private void Awake()
         {
@@ -14,9 +15,11 @@ namespace DefaultNamespace
 
         public void Execute()
         {
-            DialogueSystem.AddNewDialogue(Dialogue, "Man at the Cave");
+            DialogueSystem.AddNewDialogue(Dialogue, gameObject.name);
         }
 
-        public string Tag => "NPC";
+        public const string TagString = "NPC";
+
+        public string Tag => TagString;
     }
 }

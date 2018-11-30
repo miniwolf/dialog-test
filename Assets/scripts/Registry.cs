@@ -17,13 +17,19 @@ namespace DefaultNamespace
         void Start()
         {
             var player = GameObject.FindWithTag("Player");
+            var dialoguePanel = GameObject.FindWithTag("DialoguePanel");
+
+            var dialogueSystem = new DialogueSystem(dialoguePanel);
             foreach (var entity in s_Entities)
             {
                 switch (entity.Tag)
                 {
-                    case WorldInteractionSystem.TagString:
-                        ((WorldInteractionSystem) entity).playerAgent =
+                    case WorldInteraction.TagString:
+                        ((WorldInteraction) entity).playerAgent =
                             player.GetComponent<NavMeshAgent>();
+                        break;
+                    case NPCDialogue.TagString:
+                        ((NPCDialogue)entity).DialogueSystem = dialogueSystem;
                         break;
                     default:
                         Debug.LogError("Unknown entity: " + entity.Tag);

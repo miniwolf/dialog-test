@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Interactions
 {
-    public class WorldInteractionSystem : MonoBehaviour, Entity
+    public class WorldInteraction : MonoBehaviour, Entity
     {
         public NavMeshAgent playerAgent { private get; set; }
 
@@ -16,9 +16,11 @@ namespace Interactions
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            var isButtonDown = Input.GetMouseButtonDown(0);
+            var isOverGameObject = EventSystem.current.IsPointerOverGameObject();
+            if (isButtonDown && !isOverGameObject)
             {
-                var interactionRay = Camera.current.ScreenPointToRay(Input.mousePosition);
+                var interactionRay = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (!Physics.Raycast(interactionRay, out var interactionInfo, Mathf.Infinity))
                 {
                     return;

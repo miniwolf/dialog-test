@@ -47,6 +47,10 @@ namespace DefaultNamespace
 
         private void CreateDialogue()
         {
+            if (dialogueLines.Length <= index)
+            {
+                return;
+            }
             dialogueText.text = dialogueLines[index];
             nameText.text = speaker;
             dialoguePanel.SetActive(true);
