@@ -29,7 +29,7 @@ namespace DefaultNamespace
         {
             if (index < dialogueLines.Length - 1)
             {
-                dialogueText.text = dialogueLines[index++];
+                dialogueText.text = dialogueLines[++index];
             }
             else
             {
