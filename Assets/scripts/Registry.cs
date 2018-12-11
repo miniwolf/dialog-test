@@ -9,6 +9,8 @@ namespace DefaultNamespace
     {
         private static readonly List<Entity> s_Entities = new List<Entity>();
 
+        public DialogueImporter.SceneDialogue Dialogue;
+
         public static void Register(Entity entity)
         {
             s_Entities.Add(entity);
@@ -30,6 +32,7 @@ namespace DefaultNamespace
                         break;
                     case NPCDialogue.TagString:
                         ((NPCDialogue)entity).DialogueSystem = dialogueSystem;
+                        ((NPCDialogue)entity).SceneDialogue = Dialogue;
                         break;
                     default:
                         Debug.LogError("Unknown entity: " + entity.Tag);

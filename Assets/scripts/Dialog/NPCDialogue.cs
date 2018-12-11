@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -5,7 +6,7 @@ namespace DefaultNamespace
     public class NPCDialogue : MonoBehaviour, Entity
     {
         public DialogueSystem DialogueSystem { private get; set; }
-        public string[] Dialogue;
+        public DialogueImporter.SceneDialogue SceneDialogue { get; set; }
         public string Name;
 
         private void Awake()
@@ -15,7 +16,10 @@ namespace DefaultNamespace
 
         private void OnTriggerEnter(Collider collider)
         {
-            DialogueSystem.AddNewDialogue(Dialogue, gameObject.name);
+            var dialogue = SceneDialogue.Lines
+                .Where(codeData => codeData.Character.Equals("Name"))
+                .Select(codeData => codeData.Text).ToArray();
+            DialogueSystem.AddNewDialogue(dialogue, gameObject.name);
             DialogueSystem.StartDialogue();
         }
 
