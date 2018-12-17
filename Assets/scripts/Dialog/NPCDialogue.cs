@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class NPCDialogue : MonoBehaviour, Interactable, Entity
+    public class NPCDialogue : MonoBehaviour, Entity
     {
         public DialogueSystem DialogueSystem { private get; set; }
         public string[] Dialogue;
@@ -13,9 +13,10 @@ namespace DefaultNamespace
             Registry.Register(this);
         }
 
-        public void Execute()
+        private void OnTriggerEnter(Collider collider)
         {
             DialogueSystem.AddNewDialogue(Dialogue, gameObject.name);
+            DialogueSystem.StartDialogue();
         }
 
         public const string TagString = "NPC";

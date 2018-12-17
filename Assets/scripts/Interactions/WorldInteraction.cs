@@ -33,14 +33,10 @@ namespace Interactions
         private static void GetInteraction(NavMeshAgent agent, RaycastHit interactionInfo)
         {
             var interactedObject = interactionInfo.collider.gameObject;
-            if (interactedObject.CompareTag("Interactable Object"))
-            {
-                interactedObject.GetComponent<Interactable>().Execute();
-            }
-            else if (interactedObject.CompareTag("Moveable area"))
-            {
+            //if (interactedObject.CompareTag("Moveable area"))
+            //{
                 agent.destination = interactionInfo.point;
-            }
+            //}
         }
 
         public const string TagString = "WorldInteraction";

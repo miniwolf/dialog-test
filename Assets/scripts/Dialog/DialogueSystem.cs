@@ -42,10 +42,9 @@ namespace DefaultNamespace
             dialogueLines = lines;
             index = 0;
             this.speaker = speaker;
-            CreateDialogue();
         }
 
-        private void CreateDialogue()
+        public void StartDialogue()
         {
             if (dialogueLines.Length <= index)
             {
